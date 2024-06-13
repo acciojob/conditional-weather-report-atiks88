@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './../styles/WeatherDisplay.css'; // Assuming you have some CSS for styling
+
 
 function WeatherDisplay({ city, Temp, conditions }) {
   return (
