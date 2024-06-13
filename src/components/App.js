@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import './../styles/App.css';
 import WeatherDisplay from "../components/WeatherDisplay";
 
@@ -13,7 +13,7 @@ const App = () => {
   const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;  
 
   useEffect(()=>{
-    const FetchData = async(url)=>{
+    const fetchData = async(url)=>{
       try{
        const response = await fetch (url);
        if(!response.ok)
@@ -21,7 +21,7 @@ const App = () => {
           alert("Network Error: " + response.message);
         }
         const data = await response.json();
-        setTemp((data.main.temp - 273.15).toFixed(2));//converting kelvin to feranite kaam ka code
+        setTemp((data.main.temp - 273.15).toFixed(2));//converting kelvin to Celsius kaam ka code
         setConditions(data.weather[0].main);
         setCity(data.name);
         console.log(data);
@@ -31,8 +31,8 @@ const App = () => {
         console.error('There has been a problem with your fetch operation:', error);
       }
     }
-    FetchData(url);
-  },[url]);
+    fetchData(url);
+  },[]);
 
   
   return (
