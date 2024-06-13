@@ -4,8 +4,7 @@ import WeatherDisplay from "../components/WeatherDisplay";
 
 const App = () => {
   const [city, setCity] = useState("Paratwada");
-  const [Temp, setTemp] = useState(25);
-  const [conditions, setConditions] = useState("Sunny");
+  const [weather, setWeather] = useState({ temperature: 25, conditions: "Sunny" });
 
   const apiKey = "7b99a09d28aa86c3bfd0878a634f4cfd";
   const lat = "21.273060";
@@ -21,19 +20,18 @@ const App = () => {
         return response.json();
       })
       .then((data) => {
-        setTemp((data.main.temp - 273.15).toFixed(2)); // Convert Kelvin to Celsius
-        setConditions(data.weather[0].main);
         setCity(data.name);
-        console.log(data);
+        setWeather({ temperature: ((data.main.temp - 273.15).toFixed(2)), conditions: data.weather[0].main });
+         // Convert Kelvin to Celsius
       })
       .catch((error) => {
         console.error('There has been a problem with your fetch operation:', error);
       });
-  }, []); // Empty dependency array to run only once on mount
+  }, []);
 
   return (
     <div className="App">
-      <WeatherDisplay city={city} Temp={Temp} conditions={conditions} />
+      <WeatherDisplay weather={weather} />
     </div>
   );
 }
