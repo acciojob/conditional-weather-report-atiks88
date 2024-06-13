@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-function WeatherDisplay({ weather }) {
+function WeatherDisplay({ weather ,city}) {
 
   const { temperature, conditions } = weather;
   const textColor = temperature > 20 ? 'red' : 'blue';

@@ -31,7 +31,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <WeatherDisplay weather={weather} />
+      <WeatherDisplay weather={weather} city={city}/>
     </div>
   );
 }
