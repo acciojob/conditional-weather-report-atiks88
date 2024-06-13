@@ -1,6 +1,6 @@
 import React from 'react'
 
-function WeatherDisplay() {
+function WeatherDisplay({ city, Temp, conditions }) {
   return (
     <div className='WeatherDiv'>
         <h1 style={{color: Temp > 20 ? "red" : "blue"} }>{Temp}C</h1>
